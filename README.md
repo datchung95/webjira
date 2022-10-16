@@ -1,1 +1,1 @@
-preview web: https://jaradatchung.surge.sh
+link web: https://jaradatchung.surge.sh
