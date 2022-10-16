@@ -74,7 +74,7 @@ export default function ContentMain(props) {
     }
 
     return (
-        <div className="content" style={{ display: 'flex' }}>
+        <div className="content d-md-flex d-block">
             {renderTaskList()}
         </div>
     )

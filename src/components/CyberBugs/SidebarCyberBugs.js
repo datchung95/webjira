@@ -36,7 +36,7 @@ export default function SidebarCyberBugs() {
                         {
                             key: '1',
                             icon: <PlusOutlined />,
-                            label: 'Create issue',
+                            label: 'Create task',
                             onClick: () => {
                                 dispatch({
                                     type: OPEN_FORM_CREATE_TASK,
@@ -44,11 +44,6 @@ export default function SidebarCyberBugs() {
                                     component: <FormCreateTask />
                                 })
                             }
-                        },
-                        {
-                            key: '2',
-                            icon: <SearchOutlined />,
-                            label: 'Search issue',
                         },
                     ]}
                 />

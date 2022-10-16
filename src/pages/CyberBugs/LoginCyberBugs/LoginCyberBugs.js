@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom'
 
 function LoginCyberBugs(props) {
 
-    //props của formik truyền vào
     const {
         values,
         touched,
@@ -25,9 +24,9 @@ function LoginCyberBugs(props) {
                 <div>
                     <h3 className="text-center" style={{ fontSize: "35px" }}>Login CyberBugs</h3>
                     <Input onChange={handleChange} className="mt-3" name="email" type="email" size="large" placeholder="Email" prefix={<UserOutlined />} />
-                    <p className="text-danger">{errors.email}</p>
+                    {touched.email && <p className="text-danger">{errors.email}</p>}
                     <Input onChange={handleChange} className="mt-3" name="password" type="password" size="large" placeholder="Password" prefix={<LockOutlined />} />
-                    <p className="text-danger">{errors.password}</p>
+                    {touched.password && <p className="text-danger">{errors.password}</p>}
                     <div className="text-center">
                         <Button htmlType="submit" style={{ backgroundColor: "rgb(102, 117, 233)", width: "100%" }} size="large" className="mt-5">Login</Button>
                     </div>
@@ -60,5 +59,4 @@ const LoginCyberBugsWithFormik = withFormik({
     displayName: "LoginCyberBugs",
 })(LoginCyberBugs);
 
-//khi sử dụng formik hoặc connect của redux bọc vào component thì sẽ nhận được props của formik hoặc redux
 export default connect()(LoginCyberBugsWithFormik);

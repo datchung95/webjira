@@ -117,7 +117,7 @@ export default function ModalCyberBugs() {
 
     const renderComment = () => {
         return <Fragment>
-            <div className="block-comment" style={{ display: 'flex' }}>
+            <div className="block-comment d-md-flex d-block my-3">
                 <div className="avatar">
                     <img src={require("../../assets/img/download (1).jfif")} alt="img" />
                 </div>
@@ -287,7 +287,7 @@ export default function ModalCyberBugs() {
                         <div className="modal-body">
                             <div className="container-fluid">
                                 <div className="row">
-                                    <div className="col-8">
+                                    <div className="col-12 col-md-8">
                                         <p className="issue">{modalTaskDetail.taskName}</p>
                                         <div className="description">
                                             <p>Description</p>
@@ -298,7 +298,7 @@ export default function ModalCyberBugs() {
                                             {renderComment()}
                                         </div>
                                     </div>
-                                    <div className="col-4">
+                                    <div className="col-12 col-md-4">
                                         <div className="status">
                                             <h6>STATUS</h6>
                                             <select className="custom-select" name="statusId" value={modalTaskDetail.statusId} onChange={(e) => {
@@ -364,8 +364,6 @@ export default function ModalCyberBugs() {
                                             <h6>TIME TRACKING</h6>
                                             {renderTimeTracking()}
                                         </div>
-                                        <div style={{ color: '#929398' }}>Create at a month ago</div>
-                                        <div style={{ color: '#929398' }}>Update at a few seconds ago</div>
                                     </div>
                                 </div>
                             </div>

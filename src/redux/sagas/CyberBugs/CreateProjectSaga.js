@@ -18,6 +18,7 @@ function* createProject(action) {
                 type: GET_ALL_PROJECT_MANAGEMENT
             })
             history.push("/projectmanagement");
+            window.location.reload()
             notificationCyberBugs("success", "Tạo project thành công");
         }
     } catch (err) {

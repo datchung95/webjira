@@ -478,3 +478,20 @@ body {
   margin-top: 10px;
 }
 
+/* Responsive */
+@media screen and (max-width: 1400px) {
+  .jira {
+    flex-direction: column;
+  }
+
+  .menu {
+    height: auto;
+    width: 100%;
+  }
+
+  .account {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    margin-bottom: 0!important;
+  }
+}

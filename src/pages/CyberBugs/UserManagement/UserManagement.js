@@ -5,6 +5,7 @@ import { DELETE_USER_SAGA, GET_ALL_USER_SAGA, OPEN_FORM_EDIT_USER, SEARCH_USER_S
 import { NavLink } from 'react-router-dom'
 import FormEditUser from '../../../components/CyberBugs/Form/FormEditUser/FormEditUser';
 import { EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'
+import { history } from '../../../utils/libs/history';
 
 export default function UserManagement(props) {
 
@@ -76,8 +77,14 @@ export default function UserManagement(props) {
 
     return (
         <div className="container mt-5">
-            <div className="text-right mr-5">
+            <div className="justify-content-end mr-5 d-flex align-items-center">
                 <p>Chào! <span className="text-danger">{userLogin.name}</span> <img style={{ borderRadius: "50%" }} src={userLogin.avatar} alt="img" /></p>
+                <div className='ml-3'>
+                    <button className='btn btn-danger' onClick={() => {
+                        localStorage.clear()
+                        history.push("/")
+                    }}>Đăng xuất</button>
+                </div>
             </div>
             <div className="mb-3">
                 <NavLink to="/signupcyberbugs">Create User</NavLink>
@@ -91,7 +98,10 @@ export default function UserManagement(props) {
                     })
                 }}><SearchOutlined /></button>
             </div>
-            <Table columns={columns} dataSource={allUser} rowKey="userId" />
+            <Table scroll={{
+                x: 900,
+                y: 500,
+            }} columns={columns} dataSource={allUser} rowKey="userId" />
         </div>
     )
 }

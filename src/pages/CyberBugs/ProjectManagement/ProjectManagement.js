@@ -43,7 +43,7 @@ export default function ProjectManagement() {
             sorter: (a, b) => (a.projectName?.trim().toLowerCase()).localeCompare(b.projectName?.trim().toLowerCase()),
             sortOrder: sortedInfo.columnKey === 'projectName' ? sortedInfo.order : null,
             render: (text, record, index) => {
-                return <NavLink key={index} to={`/projectdetail/:${record.id}`}>{record.projectName}</NavLink>
+                return <NavLink key={index} to={`/projectdetail/${record.id}`}>{record.projectName}</NavLink>
             }
         },
         {
@@ -183,7 +183,10 @@ export default function ProjectManagement() {
                 }}
             >
             </Space>
-            <Table columns={columns} rowKey="id" dataSource={projectList} onChange={handleChange} />
+            <Table scroll={{
+                x: 900,
+                y: 500,
+            }} columns={columns} rowKey="id" dataSource={projectList} onChange={handleChange} />
         </div>
     );
 }

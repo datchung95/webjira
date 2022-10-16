@@ -8,7 +8,6 @@ import { CREATE_PROJECT_SAGA, GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../red
 function CreateProject(props) {
 
     const handleEditorChange = (content, editor) => {
-        //dùng setFieldValue của formik để set giá trị cho description
         setFieldValue("description", content);
     }
 
@@ -27,14 +26,13 @@ function CreateProject(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //khi component được render thì sẽ gọi api lấy projectcategory chỉ chạy 1 lần
         dispatch({ type: GET_ALL_PROJECT_CATEGORY_SAGA });
     }, [])
 
     return (
-        <div className="container mt-5">
+        <div className="container my-5">
             <h3 className="text-center">Create Project</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="mb-5">
                 <div className="form-group">
                     <p>Name</p>
                     <input onChange={handleChange} className="form-control" name="projectName" />
@@ -73,9 +71,7 @@ function CreateProject(props) {
     )
 }
 
-//hàm createProjectForm bọc component CreateProject thì CreateProject cũng nhận được props của createProjectForm
 const createProjectForm = withFormik({
-    //enableReinitialize khi arrProjectCategory thay đổi thì chạy lại hàm mapPropsToValues nếu không có lệnh enableReinitialize: true thì nó chỉ chạy 1 lần duy nhất khi load component
     enableReinitialize: true,
     mapPropsToValues: (props) => {
         return {

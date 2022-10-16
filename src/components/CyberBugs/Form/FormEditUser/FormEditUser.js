@@ -32,24 +32,24 @@ function FormEditUser(props) {
             </div>
             <div className="form-group">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Email</p>
                         <input name="email" type="email" className="form-control" value={values.email} onChange={handleChange} />
                         <p className="text-danger">{errors.email}</p>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Password</p>
                         <input name="passWord" type="password" className="form-control" value={values.passWord} onChange={handleChange} />
                         <p className="text-danger">{errors.passWord}</p>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Name</p>
                         <input name="name" type="text" className="form-control" value={values.name} onChange={handleChange} />
                         <p className="text-danger">{errors.name}</p>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Phone</p>
                         <input name="phoneNumber" type="number" className="form-control" value={values.phoneNumber} onChange={handleChange} />
                         <p className="text-danger">{errors.phoneNumber}</p>

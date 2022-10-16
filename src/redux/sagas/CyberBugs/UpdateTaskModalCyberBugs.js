@@ -59,12 +59,6 @@ function* handleChangeCallApiModalCyberBugs(action) {
 
     let modalTaskDetail = yield select(state => state.ModalIndexTaskDetailReducer.modalTaskDetail);
     let listUserAsign = modalTaskDetail.assigness?.map((item, index) => {return item.id})
-    // let listUserAsign = [];
-    // let userId;
-    // for (let i in modalTaskDetail.assigness) {
-    //     userId = modalTaskDetail.assigness[i].id
-    //     listUserAsign.push(userId)
-    // }
     modalTaskDetail = {...modalTaskDetail,listUserAsign}
     try {
         const {data, status} = yield call(() => cyberBugsServices.updateTaskModalCyberBugs(modalTaskDetail));

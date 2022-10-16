@@ -1,5 +1,3 @@
-export const DOMAIN = "http://svcy.myclass.vn/api";
-
 export const DOMAIN_CYBERBUGS = "https://casestudy.cyberlearn.vn/api"
 
 export const TOKEN = "access_token"

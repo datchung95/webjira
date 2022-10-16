@@ -22,10 +22,6 @@ function FormEditProject(props) {
 
     const dispatch = useDispatch();
 
-    // const submitForm = (e) => {
-    //     e.preventDefault();
-    // }
-
     useEffect(() => {
         dispatch({
             type: SUBMIT_FORM_EDIT_PROJECT,
@@ -41,19 +37,19 @@ function FormEditProject(props) {
     return (
         <form className="container" onSubmit={handleSubmit}>
             <div className="row">
-                <div className="col-4">
+                <div className="col-12 col-md-4">
                     <div className="form-group">
                         <p>Project Id</p>
                         <input className="form-control" value={values.id} name="id" disabled={true} />
                     </div>
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-md-4">
                     <div className="form-group">
                         <p>Project Name</p>
                         <input onChange={handleChange} value={values.projectName} className="form-control" name="projectName" />
                     </div>
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-md-4">
                     <div className="form-group">
                         <p>Project Category</p>
                         <div className="form-group">

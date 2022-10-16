@@ -68,6 +68,7 @@ function* createTaskModal(action) {
         yield put({
             type: CLOSE_DRAWER
         })
+        window.location.reload()
         openNotificationWithIcon("success", "tạo task thành công")
     } catch(err) {
         console.log(err)

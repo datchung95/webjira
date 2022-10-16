@@ -8,6 +8,8 @@ import * as Yup from 'yup'
 
 const children = [];
 
+const { Option } = Select;
+
 function FormCreateTask(props) {
 
     const {
@@ -68,53 +70,64 @@ function FormCreateTask(props) {
         <form className="container" onSubmit={handleSubmit}>
             <div className="form-group">
                 <p>Project</p>
-                <select name="projectId" className="form-control" style={{ cursor: "pointer" }} onChange={(e) => {
-                    setFieldValue("projectId", e.target.value)
+                <Select className='w-100' placeholder="Select My Project" name="projectId" style={{ cursor: "pointer" }} onChange={(value) => {
+                    setFieldValue("projectId", value)
                     dispatch({
                         type: GET_USER_BY_PROJECT_FORM_CREATE_TASK_SAGA,
-                        projectId: e.target.value
+                        projectId: value
                     })
                 }}>
                     {project.map((item, index) => {
-                        return <option key={index} value={item.id}>{item.projectName}</option>
+                        return <Option key={index} value={item.id}>{item.projectName}</Option>
                     })}
-                </select>
+                </Select>
+                {touched.projectId && <p className='text-danger'>{errors.projectId}</p>}
             </div>
             <div className="form-group">
                 <p>Task Name</p>
                 <input className="form-control" name="taskName" onChange={handleChange} />
+                {touched.taskName && <p className='text-danger'>{errors.taskName}</p>}
             </div>
             <div className="form-group">
                 <p>Status</p>
-                <select className="form-control" name="statusId" onChange={handleChange}>
+                <Select className='w-100' name="statusId" placeholder="Select Status" onChange={(value) => {
+                    setFieldValue("statusId", value)
+                }}>
                     {status.map((item, index) => {
-                        return <option key={index} value={item.statusId}>{item.statusName}</option>
+                        return <Option key={index} value={item.statusId}>{item.statusName}</Option>
                     })}
-                </select>
+                </Select>
+                {touched.statusId && <p className='text-danger'>{errors.statusId}</p>}
             </div>
             <div className="form-group">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Priority</p>
-                        <select name="priorityId" className="form-control" style={{ cursor: "pointer" }} onChange={handleChange}>
+                        <Select className='w-100' name="priorityId" placeholder="Select Priority" style={{ cursor: "pointer" }} onChange={(value) => {
+                            setFieldValue("priorityId", value)
+                        }}>
                             {priority.map((item, index) => {
-                                return <option key={index} value={item.priorityId}>{item.priority}</option>
+                                return <Option key={index} value={item.priorityId}>{item.priority}</Option>
                             })}
-                        </select>
+                        </Select>
+                        {touched.priorityId && <p className='text-danger'>{errors.priorityId}</p>}
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Task Type</p>
-                        <select name="typeId" className="form-control" style={{ cursor: "pointer" }} onChange={handleChange}>
+                        <Select className='w-100' name="typeId" placeholder="Select Task Type" style={{ cursor: "pointer" }} onChange={(value) => {
+                            setFieldValue("typeId", value)
+                        }}>
                             {taskType.map((item, index) => {
-                                return <option key={index} value={item.id}>{item.taskType}</option>
+                                return <Option value={item.id}>{item.taskType}</Option>
                             })}
-                        </select>
+                        </Select>
+                        {touched.typeId && <p className='text-danger'>{errors.typeId}</p>}
                     </div>
                 </div>
             </div>
             <div className="form-group">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Assingees</p>
                         <Select
                             mode="multiple"
@@ -127,7 +140,7 @@ function FormCreateTask(props) {
                                 setFieldValue("listUserAsign", values)
                             }}
                             onSearch={() => {
-                                
+
                             }}
                             style={{
                                 width: '100%',
@@ -142,7 +155,7 @@ function FormCreateTask(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <p>Time Tracking</p>
                         <Slider max={Number(timeTracking.timeTrackingSpent) + Number(timeTracking.timeTrackingRemaining)} value={timeTracking.timeTrackingSpent} />
                         <div className="row">
@@ -150,7 +163,7 @@ function FormCreateTask(props) {
                             <div className="col-6 text-right font-weight-bold">{timeTracking.timeTrackingRemaining}h remaining</div>
                         </div>
                         <div className="row" style={{ marginTop: "10px" }}>
-                            <div className="col-6">
+                            <div className="col-12 col-md-6">
                                 <p>Time spent</p>
                                 <input type="number" min="0" defaultValue="0" className="form-control" name="timeTrackingSpent" onChange={(e) => {
                                     setTimeTracking({
@@ -160,7 +173,7 @@ function FormCreateTask(props) {
                                     setFieldValue("timeTrackingSpent", e.target.value)
                                 }} />
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-md-6">
                                 <p>Time remaning</p>
                                 <input type="number" min="0" defaultValue="0" className="form-control" name="timeTrackingRemaining" onChange={(e) => {
                                     setTimeTracking({
@@ -201,25 +214,27 @@ function FormCreateTask(props) {
 }
 
 const formCreateProject = withFormik({
-    enableReinitialize: true,
     mapPropsToValues: (props) => {
-        const { project, taskType, priority, status } = props
-
         return {
             listUserAsign: [],
             taskName: "",
             description: "",
-            statusId: status[0]?.statusId,
+            statusId: "",
             originalEstimate: 0,
             timeTrackingSpent: 0,
             timeTrackingRemaining: 0,
-            projectId: project[0]?.id,
-            typeId: taskType[0]?.id,
-            priorityId: priority[0]?.priorityIdpriorityId
+            projectId: "",
+            typeId: "",
+            priorityId: ""
         }
     },
     validationSchema: Yup.object().shape({
-
+        taskName: Yup.string().trim().required("Task name is required"),
+        description: Yup.string().trim().required("Description is required"),
+        statusId: Yup.string().trim().required("Status is required"),
+        projectId: Yup.string().trim().required("Project is required"),
+        typeId: Yup.string().trim().required("Task Type is required"),
+        priorityId: Yup.string().trim().required("Priority is required")
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         props.dispatch({

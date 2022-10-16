@@ -3,6 +3,7 @@ import { withFormik } from 'formik'
 import * as Yup from 'yup';
 import { connect } from 'react-redux'
 import { SIGN_UP_SAGA } from '../../../redux/types/CyberBugsTypes/CyberBugsTypes';
+import { NavLink } from 'react-router-dom';
 
 function SignUpCyberBugs(props) {
 
@@ -22,22 +23,25 @@ function SignUpCyberBugs(props) {
                     <h3 className="text-center mb-5">Sign Up</h3>
                     <div className="form-group">
                         <input onChange={handleChange} type="email" className="form-control" name="email" placeholder="email" />
-                        <p className="text-danger">{errors.email}</p>
+                        {touched.email && <p className="text-danger">{errors.email}</p>}
                     </div>
                     <div className="form-group">
                         <input onChange={handleChange} type="password" className="form-control" name="passWord" placeholder="password" />
-                        <p className="text-danger">{errors.passWord}</p>
+                        {touched.passWord && <p className="text-danger">{errors.passWord}</p>}
                     </div>
                     <div className="form-group">
                         <input onChange={handleChange} type="number" className="form-control" name="phoneNumber" placeholder="phoneNumber" />
-                        <p className="text-danger">{errors.phoneNumber}</p>
+                        {touched.phoneNumber && <p className="text-danger">{errors.phoneNumber}</p>}
                     </div>
                     <div className="form-group">
                         <input onChange={handleChange} type="text" className="form-control" name="name" placeholder="name" />
-                        <p className="text-danger">{errors.name}</p>
+                        {touched.name && <p className="text-danger">{errors.name}</p>}
                     </div>
                     <div className="text-center mt-4">
                         <button className="btn btn-primary">Sign Up</button>
+                    </div>
+                    <div className="mt-3 text-center">
+                        <NavLink to="/" className="text-dark">Quay về đăng nhập</NavLink>
                     </div>
                 </div>
             </div>

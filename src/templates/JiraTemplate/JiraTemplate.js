@@ -11,7 +11,6 @@ export const JiraTemplate = (props) => {
             <div className="jira">
                 <SidebarCyberBugs />
                 <MenuCyberBugs />
-                {/* {/* Main Board * /} */}
                 <Component {...propsRoute} />
                 <ModalCyberBugs />
             </div>
